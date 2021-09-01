@@ -17,8 +17,9 @@
     "@mapbox/martini": "^0.2.0",
     "@types/ndarray": "^1.0.7",
     "axios": "^0.21.1",
+    "babel-loader": "^8.2.2",
     "cesium": "^1.81.0",
-    "core-js": "^2.6.12",
+    "core-js": "^3.17.0",
     "get-pixels": "^3.3.2"
   },
   "devDependencies": {
