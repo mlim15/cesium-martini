@@ -17,7 +17,10 @@ function mapboxTerrainToGrid(png: ndarray<number>) {
       const g = png.get(x, yc, 1);
       const b = png.get(x, yc, 2);
       terrain[y * gridSize + x] =
-        (r * 256 * 256) / 10.0 + (g * 256.0) / 10.0 + b / 10.0 - 10000.0;
+        // Mapzen Terrarium
+        (r * 256 + g + b / 256) - 32768;
+        // Mapbox Terrain-RGB
+        //(r * 256 * 256) / 10.0 + (g * 256.0) / 10.0 + b / 10.0 - 10000.0;
     }
   }
   // backfill right and bottom borders

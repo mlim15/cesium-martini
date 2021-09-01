@@ -64,7 +64,7 @@ const loadImage = (url) =>
 class MartiniTerrainProvider<TerrainProvider> {
   hasWaterMask = false;
   hasVertexNormals = false;
-  credit = new Credit("Mapbox");
+  credit = new Credit("Nextzen");
   ready: boolean;
   readyPromise: Promise<boolean>;
   availability = null;
@@ -103,7 +103,7 @@ class MartiniTerrainProvider<TerrainProvider> {
 
     this.errorEvent.addEventListener(console.log, this);
     this.ellipsoid = opts.ellipsoid ?? Ellipsoid.WGS84;
-    this.format = opts.format ?? ImageFormat.WEBP;
+    this.format = opts.format ?? ImageFormat.PNG;
     if (this.useWorkers) {
       this.workerFarm = new WorkerFarm();
     }
@@ -148,7 +148,8 @@ class MartiniTerrainProvider<TerrainProvider> {
     const hires = this.highResolution ? "@2x" : "";
     // SKU token generation code: https://github.com/mapbox/mapbox-gl-js/blob/79f594fab76d932ccea0f171709718568af660e3/src/util/sku_token.js#L23
     // https://api.mapbox.com/raster/v1/mapbox.mapbox-terrain-dem-v1/${z}/${x}/${y}${hires}.${this.format}?access_token=${this.accessToken}&sku=101EX9Btybqbj
-    return `https://api.mapbox.com/v4/mapbox.terrain-rgb/${z}/${x}/${y}${hires}.${this.format}?access_token=${this.accessToken}`;
+    return `https://s3.amazonaws.com/elevation-tiles-prod/terrarium/${z}/${x}/${y}.${this.format}`;
+    //return `https://api.mapbox.com/v4/mapbox.terrain-rgb/${z}/${x}/${y}${hires}.${this.format}?access_token=${this.accessToken}`;
   }
 
   requestTileGeometry(x, y, z, request) {
